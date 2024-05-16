@@ -6,7 +6,7 @@ const authRoutes = require("./routes/userroutes");
 const tweetRoutes = require("./routes/tweetroute");
 const connectdb = require("./db/connect");
 const cookieParser= require("cookie-parser")
-
+const cors = require('cors')
 
 
 
@@ -17,6 +17,12 @@ const cookieParser= require("cookie-parser")
 app.use(express.urlencoded({ extended: true }))// to parse form data(urlencoded)
 app.use(express.json())
 app.use(cookieParser());
+const corsOption ={
+  origin:"http://localhost:5173",
+  credentials:true
+}
+app.use(cors(corsOption))
+
 // Routes
 app.use("/api/v1/user", authRoutes);
 app.use("/api/v1/tweet", tweetRoutes)

@@ -1,14 +1,27 @@
-import { useState } from 'react';
-import Home from './pages/home/HomePage';
-import './App.css';
-import SignUpPage from './pages/auth/signup/SignupPage';
+
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'; // Import Route and Routes from react-router-dom
+
+import HomePage from './pages/home/HomePage';
+import LoginPage from './pages/auth/login/LoginPage'
+import SignupPage from './pages/auth/signup/SignupPage';
+import Profile from './pages/components/Profile'
+
+
 
 function App() {
   return (
-    <div>
-      {/* <Home /> */}
-      <SignUpPage />
-    </div>
+   <BrowserRouter>
+      <Routes>
+      <Route path='/' element={<HomePage />} />
+      <Route path='/login' element={<LoginPage />} />
+      <Route path='/signup' element={<SignupPage />} />
+      <Route path='/profile' element={<Profile />} />
+
+    </Routes>
+ 
+   </BrowserRouter>
+ 
   );
 }
 

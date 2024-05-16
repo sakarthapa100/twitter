@@ -87,6 +87,7 @@ module.exports.login = async (req, res) => {
     );
     return res.status(201).cookie("token", token, { maxAge: 24 * 60 * 60 * 1000, httpOnly: true }).json({
       message: `Welcome back ${user.username}`,
+			user,
       success: true
     });
 

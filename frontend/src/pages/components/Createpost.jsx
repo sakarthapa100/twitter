@@ -10,7 +10,7 @@ import { FaLocationDot } from "react-icons/fa6";
 
 const Createpost = () => {
   return (
-    <div className='w-[100%]'>
+    <div className='w-[100%] ' >
       <div >
           <div className='flex items-center justify-between border-gray-200'>
 <div className='font-bold text-gray-500 text-lg cursor-pointer hover:bg-gray-400 w-full text-center px-3 py-2 '> 
@@ -20,7 +20,7 @@ const Createpost = () => {
   <h3>Following</h3>
 </div>
       </div>
-      <div className='m-4'>
+      <div className='m-4 '>
 <div className='flex items-center'>
   <div>
     <Avatar src='https://pbs.twimg.com/profile_images/1190747917998546944/D3U5FNa7_400x400.jpg' size="40" round={true} />
@@ -33,7 +33,7 @@ const Createpost = () => {
 </div>
 
 </div>
-<div class="flex items-center my-4 border-b border-gray-300">
+<div class="flex items-center my-4 border-b border-gray-300 ">
   <div class="mr-2">
     <FaImage />
   </div>
