@@ -1,20 +1,23 @@
-import React from 'react'
-import Createpost from './Createpost'
-import Tweet from './Tweet'
+import React from 'react';
+import Createpost from './Createpost';
+import Tweet from './Tweet';
+import { useSelector } from 'react-redux';
+import WebSocketManager from '../../WebSocketManager';
 
 const Feed = () => {
-  return (
-    <div className='w-[50%]  border-l  border-r border-gray-50  border-opacity-25 p-4'>
-<div>
-   <Createpost />
-   <Tweet />
-   <Tweet />
-   <Tweet />
-   <Tweet />
-   <Tweet />
-</div>
-    </div>
-  )
-}
+  const { tweets } = useSelector((store) => store.tweet);
 
-export default Feed
+  return (
+    <div className='w-[50%] border-l border-r border-gray-50 border-opacity-25 p-4'>
+      <div>
+        <Createpost />
+        {tweets?.map((tweet) => (
+          <Tweet key={tweet?._id} tweet={tweet} />
+        ))}
+        <WebSocketManager />
+      </div>
+    </div>
+  );
+};
+
+export default Feed;

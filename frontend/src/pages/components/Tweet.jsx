@@ -6,7 +6,7 @@ import { CiHeart } from "react-icons/ci";
 import { CiBookmark } from "react-icons/ci";
 
 
-const Tweet = () => {
+const Tweet = ({tweet}) => {
   return (
     <div className='border-b border-gray-200'>
       <div>
@@ -14,18 +14,18 @@ const Tweet = () => {
           <Avatar src='https://pbs.twimg.com/profile_images/1190747917998546944/D3U5FNa7_400x400.jpg' size="40" round={true} />
           <div className=' ml-2 w-full'>
             <div className='flex items-center'>
-              <h1 className='font-bold'>Patel</h1>
-              <p className='text-gray-500 text-sm ml-1'>@patel</p>
+              <h1 className='font-bold'>{tweet?.userDetails[0]?.fullname}</h1>
+              <p className='text-gray-500 text-sm ml-1'>{`@${tweet?.userDetails[0]?.username}`}</p>
             </div>
             <div>
-              <p>Hello developers lets connects</p>
+              <p>{tweet.description}</p>
             </div>
             <div className='flex justify-between my-3'>
               <div className='flex items-center'>
                 <div className='p-2 hover:bg-green-200 rounded-full cursor-pointer'>
-                  <FaRegComment size="20px" /> {/* Use the FaRegComment icon */}
+                  <FaRegComment size="20px" /> 
                 </div>
-                <p>0</p>
+                <p>{tweet.like.length}</p>
               </div>
 
               <div className='flex items-center'>

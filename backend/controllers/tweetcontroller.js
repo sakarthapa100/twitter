@@ -1,30 +1,25 @@
-const Tweet = require("../models/tweetmodel.js")
-const User = require("../models/usermodel.js")
+const Tweet = require("../models/tweetmodel.js");
+const User = require("../models/usermodel.js");
 
-module.exports.createTweet = async(req,res) =>{
+
+module.exports.createTweet = async (req, res) => {
   try {
-    const { description, id } = req.body
-    if(!description || !id ){
-      return res.status(404).json({
-        message:"Fields are required",
-        success : false
-      })
+    const { description, id } = req.body;
+    if (!description || !id) {
+      return res.status(404).json({ message: "Fields are required", success: false });
     }
-await Tweet.create({
-description,
-userId:id
 
-})
-return res.status(401).json({
-  message:"Tweet created sucessfully",
-  success:true
-})
+    const user = await User.findById(id).select("-password");
+    const newTweet = await Tweet.create({ description, userId: id, userDetails: user });
 
+    
+
+    return res.status(201).json({ message: "Tweet created successfully", success: true });
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error", success: false });
   }
-}
-
+};
 module.exports.deleteTweet = async(req, res ) => {
   try {
     const { id} = req.params

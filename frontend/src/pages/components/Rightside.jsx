@@ -43,7 +43,36 @@ const RightSidebar = ({otherUsers}) => {
         </div>
       </div>
 
-  
+      <div className="bg-[#1D232A] text-white p-4 rounded-lg max-w-sm mx-auto">
+            <h2 className="text-lg font-semibold mb-4">Who to follow</h2>
+
+            {
+              otherUsers?.map((user)=>{
+                return(
+                       <div key={user?._id} className="space-y-3">
+                <div className="flex justify-between items-center">
+                    <div className="flex items-center">
+                        <img src="https://placehold.co/40x40" alt="SportsCenter" className="rounded-full"/>
+                        <div className="ml-3">
+                            <p className="font-semibold">{user?.fullname} 🌍📺</p>
+                            <p className="text-zinc-400">@{user?.username}</p>
+                        </div>
+                    </div>
+                    <Link to={`/profile/${user?._id}`}>
+    <button className="bg-blue-500 text-white px-4 py-1 rounded-full">Profile</button>
+</Link>
+
+                    
+                </div>
+            
+             
+            </div>
+                )
+              })
+            }
+       
+            <button className="w-full mt-4 py-2 text-blue-500">Show more</button>
+        </div>
 
     </div>
   );

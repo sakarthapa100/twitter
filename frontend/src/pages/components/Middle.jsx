@@ -10,7 +10,7 @@ const Middle = () => {
 console.log(user)
 const{id} = useParams()
 
-  useGetProfile(user?._id);
+  useGetProfile(id);
 
   return (
     <div className='w-[50%] border-l border-r border-gray-50 border-opacity-25 p-4'>

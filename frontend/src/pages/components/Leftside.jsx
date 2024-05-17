@@ -1,12 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
+import { Link } from 'react-router-dom';
 import { FaHome, FaSearch, FaBell, FaEnvelope, FaList, FaUserCircle, FaEllipsisH } from "react-icons/fa";
 import { IoBookmark, IoHome } from "react-icons/io5";
 import { BiLogOut } from "react-icons/bi";
 import { FaXTwitter } from "react-icons/fa6";
 import "./Leftside.css";
+import { useSelector } from "react-redux";
 
 const Leftside = () => {
+  const { user } = useSelector(store => store.user);
   const data = {
     fullName: "John Doe",
     username: "johndoe",
@@ -19,10 +22,11 @@ const Leftside = () => {
         <FaXTwitter />
       </div>
       <div className="my-4">
-        <div className="flex items-center my-2 px-4 py-2 rounded-full transition duration-300 ease-in-out hover:bg-gray-200 hover:bg-opacity-75 cursor-pointer">
-          <IoHome size={20} className="mr-2" />
-          <Link to="/" className="font-bold text-lg ml-2">Home</Link>
-        </div>
+      <Link to="/" className="flex items-center my-2 px-4 py-2 rounded-full transition duration-300 ease-in-out hover:bg-gray-200 hover:bg-opacity-75 cursor-pointer">
+  <IoHome size={20} className="mr-2" />
+  <div className="font-bold text-lg ml-2">Home</div>
+</Link>
+
         
         <div className="flex items-center my-2 px-4 py-2 rounded-full transition duration-300 ease-in-out hover:bg-gray-200 hover:bg-opacity-75 cursor-pointer">
           <div>
@@ -60,13 +64,12 @@ const Leftside = () => {
 </div>
 
 
-<div className="flex items-center my-2 px-4 py-2 rounded-full transition duration-300 ease-in-out hover:bg-gray-200 hover:bg-opacity-75 cursor-pointer">
-          <div>
-            <FaUserCircle size={"20"} className="mr-2" />
-          </div>
-          <Link to="/profile" className="font-bold text-lg ml-2">Profile</Link>
-        </div>
-
+<Link to={`/profile/${user}` }className="flex items-center my-2 px-4 py-2 rounded-full transition duration-300 ease-in-out hover:bg-gray-200 hover:bg-opacity-75 cursor-pointer">
+  <div>
+    <FaUserCircle size={"20"} className="mr-2" />
+  </div>
+  <h3 className="font-bold text-lg ml-2">Profile</h3>
+</Link>
         <div className="flex items-center my-2 px-4 py-2 rounded-full transition duration-300 ease-in-out hover:bg-gray-200 hover:bg-opacity-75 cursor-pointer">
           <div>
             <FaEllipsisH size={"20"} className="mr-2" />
