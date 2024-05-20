@@ -72,37 +72,37 @@ module.exports.likeorunlike = async (req, res) => {
 };
 
 
-module.exports.bookmark = async (req, res) => {
-  try {
-    const loggedInUserId = req.body.id;
-    const tweetId = req.params.id; // Access the tweetId from req.params
-    const user = await User.findById(loggedInUserId);
+// module.exports.bookmark = async (req, res) => {
+//   try {
+//     const loggedInUserId = req.body.id;
+//     const tweetId = req.params.id; // Access the tweetId from req.params
+//     const user = await User.findById(loggedInUserId);
 
 
-    if (user.bookmarks.includes(tweetId)) {
-      // Dislike
-      await User.findByIdAndUpdate(loggedInUserId, { $pull: { bookmarks: tweetId } });
-      return res.status(200).json({
-        message: "Removed from bookmark ",
-        success: true
-      });
-    } else {
-      // Like
-      await User.findByIdAndUpdate(loggedInUserId, { $push: { bookmarks: tweetId } });
-      return res.status(200).json({
-        message: "Bookmark added ",
-        success: true
-      });
-    }
+//     if (user.bookmarks.includes(tweetId)) {
+//       // Dislike
+//       await User.findByIdAndUpdate(loggedInUserId, { $pull: { bookmarks: tweetId } });
+//       return res.status(200).json({
+//         message: "Removed from bookmark ",
+//         success: true
+//       });
+//     } else {
+//       // Like
+//       await User.findByIdAndUpdate(loggedInUserId, { $push: { bookmarks: tweetId } });
+//       return res.status(200).json({
+//         message: "Bookmark added ",
+//         success: true
+//       });
+//     }
     
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      message: "Internal server error",
-      success: false
-    });
-  }
-};
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).json({
+//       message: "Internal server error",
+//       success: false
+//     });
+//   }
+// };
 
 module.exports.getAllTweets= async(req,res)=>{
   try {

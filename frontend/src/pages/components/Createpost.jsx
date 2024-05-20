@@ -6,11 +6,12 @@ import { FaLocationDot } from "react-icons/fa6";
 import axios from 'axios';
 import { TWEET_API_END_POINT } from '../../utils/constant';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRefresh } from '../../redux/tweetSlice';
+import { getRefresh, getIsActive } from '../../redux/tweetSlice';
 
 const Createpost = () => {
   const [description, setDescription] = useState("");
   const{user} = useSelector(store=>store.user  )
+  const {isActive} = useSelector(store=> store.tweet)
   const dispatch = useDispatch();
 
   const submitHandler = async () => {
@@ -32,18 +33,26 @@ const Createpost = () => {
     }
     setDescription("");
   };
+  const foryouHandler=()=>{
+dispatch(getIsActive(true))
+  }
+  const followingHandler=()=>{
+dispatch(getIsActive(false))
+  }
 
   return (
     <div className='w-[100%]'>
       <div>
-        <div className='flex items-center justify-between border-gray-200'>
-          <div className='font-bold text-gray-500 text-lg cursor-pointer hover:bg-gray-400 w-full text-center px-3 py-2'>
-            <h3>For you</h3>
-          </div>
-          <div className='font-bold text-gray-500 text-lg cursor-pointer hover:bg-gray-400 w-full text-center px-3 py-2'>
-            <h3>Following</h3>
-          </div>
-        </div>
+      <div className='flex items-center justify-between border-gray-200'>
+      <div onClick={foryouHandler} className={`${isActive ? "border-b-4 border-blue-600" : "border-b-4 border-transparent"} font-bold text-gray-500 text-lg cursor-pointer hover:bg-gray-400 w-full text-center px-3 py-2`}>
+
+    <h3>For you</h3>
+  </div>
+  <div onClick={followingHandler} className={`${!isActive ? "border-b-4 border-blue-600" : "border-b-4 border-transparent"} font-bold text-gray-500 text-lg cursor-pointer hover:bg-gray-400 w-full text-center px-3 py-2`}>
+    <h3>Following</h3>
+  </div>
+</div>
+
         <div className='m-4'>
           <div className='flex items-center'>
             <div>

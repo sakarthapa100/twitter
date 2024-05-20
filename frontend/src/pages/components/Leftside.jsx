@@ -1,20 +1,35 @@
 import React from "react";
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaHome, FaSearch, FaBell, FaEnvelope, FaList, FaUserCircle, FaEllipsisH } from "react-icons/fa";
 import { IoBookmark, IoHome } from "react-icons/io5";
 import { BiLogOut } from "react-icons/bi";
 import { FaXTwitter } from "react-icons/fa6";
 import "./Leftside.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { USER_API_END_POINT } from "../../utils/constant";
+import { getUser } from "../../redux/userSlice";
 
 const Leftside = () => {
-  const { user } = useSelector(store => store.user);
+  const { user ,profile} = useSelector(store => store.user);
+  const navigate =useNavigate()
+  const dispatch = useDispatch()
   const data = {
-    fullName: "John Doe",
-    username: "johndoe",
+  
     profileImg: "/avatars/boy1.png",
   };
+  const logoutHandler = async()=>{
+    try {
+      const res = await axios.get(`${USER_API_END_POINT}/logout`)
+      dispatch(getUser(null))
+      dispatch(getOtherUsers(null));
+      dispatch(getMyProfile(null));
+      navigate('/login')
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div className="navigation-menu w-[20%] ">
@@ -64,7 +79,7 @@ const Leftside = () => {
 </div>
 
 
-<Link to={`/profile/${user}` }className="flex items-center my-2 px-4 py-2 rounded-full transition duration-300 ease-in-out hover:bg-gray-200 hover:bg-opacity-75 cursor-pointer">
+<Link to={`/profile/${user?._id}` }className="flex items-center my-2 px-4 py-2 rounded-full transition duration-300 ease-in-out hover:bg-gray-200 hover:bg-opacity-75 cursor-pointer">
   <div>
     <FaUserCircle size={"20"} className="mr-2" />
   </div>
@@ -88,10 +103,10 @@ const Leftside = () => {
                 <img src={data.profileImg || "/avatar-placeholder.png"} alt="profile" />
               </div>
             </div>
-            <div className='flex justify-between flex-1'>
+            <div onClick={logoutHandler} className='flex justify-between flex-1'>
               <div className='hidden md:block'>
-                <p className='text-white font-bold text-sm w-20 truncate'>{data.fullName}</p>
-                <p className='text-slate-500 text-sm'>@{data.username}</p>
+                <p className='text-white font-bold text-sm w-20 truncate'>Logout</p>
+              
               </div>
               <BiLogOut className='w-5 h-5 cursor-pointer' />
             </div>

@@ -213,7 +213,7 @@ module.exports.unfollow = async(req, res) => {
 		const user = await User.findById(userId);
 		
 		// Check if loggedInUserId already exists in user's followers array
-		if (loggedInUser.following.includes(loggedInUserId)) {
+		if (loggedInUser.following.includes(userId)) {
 				await user.updateOne({ $pull: { followers: loggedInUserId } });
 				await loggedInUser.updateOne({ $pull: { following: userId } });
 		} else {

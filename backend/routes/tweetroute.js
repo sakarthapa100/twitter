@@ -12,8 +12,8 @@ router.route("/like/:id")
   .put(isAuthenticated,likeorunlike); 
 
   
-  router.route("/bookmark/:id")
-  .put(isAuthenticated,bookmark); 
+  // router.route("/bookmark/:id")
+  // .put(isAuthenticated,bookmark); 
 
   router.route("/alltweets/:id")
   .get(isAuthenticated,getAllTweets); 
