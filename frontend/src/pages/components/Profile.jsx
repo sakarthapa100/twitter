@@ -4,6 +4,7 @@ import Rightside from './Rightside'
 import Leftside from './Leftside'
 import Middle from './Middle'
 
+
 const profile = () => {
   return (
     <div className='flex justify-between  mx-auto'>

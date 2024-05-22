@@ -2,7 +2,7 @@ import React from 'react';
 import Createpost from './Createpost';
 import Tweet from './Tweet';
 import { useSelector } from 'react-redux';
-import WebSocketManager from '../../WebSocketManager';
+
 
 const Feed = () => {
   const { tweets } = useSelector((store) => store.tweet);
@@ -14,7 +14,7 @@ const Feed = () => {
         {tweets?.map((tweet) => (
           <Tweet key={tweet?._id} tweet={tweet} />
         ))}
-        <WebSocketManager />
+      
       </div>
     </div>
   );
